@@ -27,5 +27,13 @@ ENV ANDROID_HOME=/opt/android
 # Install the android SDK build tools
 RUN yes | ./sdkmanager --install "build-tools;29.0.2"
 
+# Setup example workspace
+WORKDIR /workspace-example
+RUN cordova telemetry off
+RUN cordova create ./ com.example.hello HelloWorld
+RUN cordova platform add android
+RUN cordova platform add browser
+# Now you can run `cordova build` with `--debug` or `--release` to create the example android app
+
 # Setup workspace
 WORKDIR /workspace
